@@ -3,17 +3,10 @@ pipeline {
 
     stages {
 
-        stage('Check Maven') {
-            steps {
-                bat 'where mvn'
-                bat 'mvn -version'
-            }
-        }
-
         stage('Run prac1 Test') {
             steps {
                 dir('stqa') {
-                    bat 'mvn -Dtest=testng1 test'
+                    bat 'mvn clean test -Dtest=testng1'
                 }
             }
         }
@@ -22,7 +15,7 @@ pipeline {
     post {
         always {
             junit testResults: 'stqa/target/surefire-reports/*.xml',
-                  allowEmptyResults: true
+                  allowEmptyResults: false
         }
     }
 }
