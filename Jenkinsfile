@@ -16,9 +16,9 @@ pipeline {
             }
         }
 
-        stage('Run Selenium Tests') {
+        stage('Run prac1 Test') {
             steps {
-                bat 'mvn clean test'
+                bat 'mvn -Dtest=prac1 test'
             }
         }
     }
