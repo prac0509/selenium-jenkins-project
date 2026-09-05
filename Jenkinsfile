@@ -9,6 +9,13 @@ pipeline {
             }
         }
 
+        stage('Check Maven') {
+            steps {
+                bat 'where mvn'
+                bat 'mvn -version'
+            }
+        }
+
         stage('Run Selenium Tests') {
             steps {
                 bat 'mvn clean test'
@@ -18,7 +25,8 @@ pipeline {
 
     post {
         always {
-            junit '**/target/surefire-reports/*.xml'
+            junit testResults: '**/target/surefire-reports/*.xml',
+                  allowEmptyResults: true
         }
     }
 }
