@@ -13,7 +13,7 @@ pipeline {
         stage('Run prac1 Test') {
             steps {
                 dir('stqa') {
-                    bat 'mvn -Dtest=prac1 test'
+                    bat 'mvn -Dtest=testng1 test'
                 }
             }
         }
